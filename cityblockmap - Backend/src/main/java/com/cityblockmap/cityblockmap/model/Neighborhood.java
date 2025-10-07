@@ -17,18 +17,24 @@ public class Neighborhood {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "neighborhood", cascade = CascadeType.ALL)
+    /*@OneToMany(mappedBy = "neighborhood", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Block> blocks;
+    */
 
     public Neighborhood() {
     }
 
-    public Neighborhood(Long id, String name, List<Block> blocks) {
+    public Neighborhood(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.blocks = blocks;
     }
+
+    /*public Neighborhood(Long id, String name List<Block> blocks) {
+        this.id = id;
+        this.name = name;
+        //this.blocks = blocks;
+    }*/
 
     public Long getId() {
         return id;
@@ -46,11 +52,11 @@ public class Neighborhood {
         this.name = name;
     }
 
-    public List<Block> getBlocks() {
+    /*public List<Block> getBlocks() {
         return blocks;
     }
 
     public void setBlocks(List<Block> blocks) {
         this.blocks = blocks;
-    }
+    }*/
 }
