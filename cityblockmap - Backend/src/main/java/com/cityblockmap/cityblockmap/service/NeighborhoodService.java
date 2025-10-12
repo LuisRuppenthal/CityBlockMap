@@ -5,11 +5,17 @@ import java.util.Optional;
 
 import com.cityblockmap.cityblockmap.model.Neighborhood;
 import com.cityblockmap.cityblockmap.repository.NeighborhoodRepository;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NeighborhoodService {
 
+    @Autowired
     private final NeighborhoodRepository neighborhoodRepository;
 
     public NeighborhoodService(NeighborhoodRepository neighborhoodRepository) {
@@ -21,28 +27,35 @@ public class NeighborhoodService {
         return neighborhoodRepository.findAll();
     }
 
+
     public Optional<Neighborhood> getById(Long id) {
         return neighborhoodRepository.findById(id);
     }
+
 
     //CREATE
     public Neighborhood createNeighborhood(Neighborhood neighborhood) {
         return neighborhoodRepository.save(neighborhood);
     }
 
+
     //UPDATE
-    public Neighborhood updateNeighborhood(Long id, Neighborhood neighborhood) {
-        return neighborhoodRepository.findById(id)
-                .map(existingNeighborhood -> {
-                    existingNeighborhood.setName(neighborhood.getName());
-                    return neighborhoodRepository.save(existingNeighborhood);
-                })
-                .orElseThrow(() -> new RuntimeException("Neighborhood not found with id: " + id));
+    public Neighborhood updateNeighborhood(Long id, Neighborhood obj) {
+        Neighborhood neighborhood = neighborhoodRepository.getReferenceById(id);
+        updateData(neighborhood, obj);
+        return neighborhoodRepository.save(neighborhood);
     }
+
+
+    private void updateData(Neighborhood neighborhood, Neighborhood obj){
+        neighborhood.setName(obj.getName());
+    }
+
 
     //DELETE
     public void deleteById(Long id) {
         neighborhoodRepository.deleteById(id);
     }
-
 }
+
+

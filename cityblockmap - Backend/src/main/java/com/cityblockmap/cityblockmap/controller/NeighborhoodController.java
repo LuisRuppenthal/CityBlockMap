@@ -2,9 +2,15 @@ package com.cityblockmap.cityblockmap.controller;
 
 import com.cityblockmap.cityblockmap.model.Neighborhood;
 import com.cityblockmap.cityblockmap.service.NeighborhoodService;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/neighborhoods")
 public class NeighborhoodController {
 
+    @Autowired
     private final NeighborhoodService neighborhoodService;
 
     public NeighborhoodController(NeighborhoodService neighborhoodService) {
@@ -30,32 +37,38 @@ public class NeighborhoodController {
 
     // /neighborhoods/{id}
     @GetMapping("/{id}")
-    public Optional<Neighborhood> getById(@PathVariable Long id) {
-        return neighborhoodService.getById(id);
+    public ResponseEntity<Neighborhood> getById(@PathVariable("id") Long id) {
+        Optional<Neighborhood> neighborhood = neighborhoodService.getById(id);
+        return ResponseEntity.ok(neighborhood.get());
     }
 
 
     // POST
     // /neighborhoods
     @PostMapping
-    public Neighborhood create(@RequestBody Neighborhood neighborhood) {
-        return neighborhoodService.createNeighborhood(neighborhood);
+    public ResponseEntity<Neighborhood> createNeighborhood(@RequestBody Neighborhood neighborhood) {
+        neighborhood = neighborhoodService.createNeighborhood(neighborhood);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(neighborhood.getId()).toUri();
+        return ResponseEntity.created(uri).body(neighborhood);
     }
 
 
     // PUT
     // /neighborhoods/{id}
     @PutMapping("/{id}")
-    public Neighborhood update(@PathVariable Long id, @RequestBody Neighborhood neighborhood) {
-        return neighborhoodService.updateNeighborhood(id, neighborhood);
+    public ResponseEntity<Neighborhood> updateNeighborhood(@PathVariable("id") Long id, @RequestBody Neighborhood neighborhood) {
+        neighborhood = neighborhoodService.updateNeighborhood(id, neighborhood);
+        return ResponseEntity.ok().body(neighborhood);
     }
 
 
     // DELETE
     // /neighborhoods/{id}
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
         neighborhoodService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
