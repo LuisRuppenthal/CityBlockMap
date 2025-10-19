@@ -2,10 +2,7 @@ package com.cityblockmap.cityblockmap.controller;
 
 import com.cityblockmap.cityblockmap.model.Neighborhood;
 import com.cityblockmap.cityblockmap.service.NeighborhoodService;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -30,7 +27,6 @@ public class NeighborhoodController {
     @GetMapping
     public ResponseEntity<List<Neighborhood>> getAll() {
         List<Neighborhood> neighborhoods = neighborhoodService.getAll();
-
         return ResponseEntity.ok().body(neighborhoods);
     }
 

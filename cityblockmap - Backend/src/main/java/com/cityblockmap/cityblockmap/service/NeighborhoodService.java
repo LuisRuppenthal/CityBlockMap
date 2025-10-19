@@ -5,11 +5,7 @@ import java.util.Optional;
 
 import com.cityblockmap.cityblockmap.model.Neighborhood;
 import com.cityblockmap.cityblockmap.repository.NeighborhoodRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
