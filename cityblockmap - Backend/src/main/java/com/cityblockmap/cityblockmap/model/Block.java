@@ -2,9 +2,17 @@ package com.cityblockmap.cityblockmap.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tb_block")
+@Data
+@ToString(exclude = "neighborhood")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,57 +25,8 @@ public class Block {
 
     @ManyToOne
     @JoinColumn(name = "neighborhood_id")
-    @JsonIgnore
+    //@JsonIgnore
     private Neighborhood neighborhood;
 
-    public Block() {
-    }
 
-    public Block(Long id, String number, double latitude, double longitude, Neighborhood neighborhood) {
-        this.id = id;
-        this.number = number;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.neighborhood = neighborhood;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Neighborhood getNeighborhood() {
-        return neighborhood;
-    }
-
-    public void setNeighborhood(Neighborhood neighborhood) {
-        this.neighborhood = neighborhood;
-    }
 }

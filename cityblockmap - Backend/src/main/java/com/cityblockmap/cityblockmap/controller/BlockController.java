@@ -1,8 +1,11 @@
 package com.cityblockmap.cityblockmap.controller;
 
+import com.cityblockmap.cityblockmap.dto.BlockDTO;
 import com.cityblockmap.cityblockmap.model.Block;
+import com.cityblockmap.cityblockmap.repository.BlockRepository;
 import com.cityblockmap.cityblockmap.service.BlockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,54 +20,66 @@ public class BlockController {
 
     @Autowired
     private final BlockService blockService;
+    private final BlockRepository blockRepository;
 
-    public BlockController(BlockService blockService){
+    public BlockController(BlockService blockService, BlockRepository blockRepository) {
         this.blockService = blockService;
+        this.blockRepository = blockRepository;
     }
 
     //GET
-    // /blocks
-    @GetMapping
-    public ResponseEntity<List<Block>> getAll(){
-        List<Block> blocks = blockService.getAll();
-        return ResponseEntity.ok().body(blocks);
+    // /blocks/get
+    @GetMapping("/get")
+    public ResponseEntity<List<BlockDTO>> getAllBlocks() {
+        return ResponseEntity.ok(blockService.getAllBlocks());
     }
 
 
-    //
-    // /blocks/{id}
-    @GetMapping("/{id}")
-    public ResponseEntity<Block> getById(@PathVariable("id") Long id) {
-        Optional<Block> block = blockService.getById(id);
-        return ResponseEntity.ok(block.get());
+    // /blocks/get/{id}
+    @GetMapping("get/{id}")
+    public ResponseEntity<BlockDTO> getBlockById(@PathVariable("id") Long id) {
+
+        if (blockRepository.existsById(id)) {
+            return ResponseEntity.ok().body(blockService.getBlockById(id));
+        }
+        return ResponseEntity.notFound().build();
     }
 
 
     // POST
-    // /blocks
-    @PostMapping
-    public ResponseEntity<Block> createBlock(@RequestBody Block block) {
-        block = blockService.createBlock(block);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(block.getId()).toUri();
-        return ResponseEntity.created(uri).body(block);
+    // /blocks/create
+    @PostMapping("/create")
+    public ResponseEntity<BlockDTO> createBlock(@RequestBody BlockDTO blockDTO) {
+        BlockDTO createdBlock = blockService.createBlock(blockDTO);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(createdBlock.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(createdBlock);
     }
 
 
     // PUT
     // /blocks/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<Block> updateBlock(@PathVariable("id") Long id, @RequestBody Block block) {
-        block = blockService.updateBlock(id, block);
-        return ResponseEntity.ok().body(block);
-    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<BlockDTO> updateBlock(@PathVariable("id") Long id, @RequestBody BlockDTO blockDTO) {
 
+        if (blockRepository.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.OK).body(blockService.updateBlock(id, blockDTO));
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     // DELETE
     // /blocks/{id}
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
-        blockService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteBlockById(@PathVariable("id") Long id){
+        if (blockRepository.existsById(id)){
+            blockService.deleteBlockById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Block (" + id + ") deletado");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Block ("+id+") não encontrado!");
     }
 }

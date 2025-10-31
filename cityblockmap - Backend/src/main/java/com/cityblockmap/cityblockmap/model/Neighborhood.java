@@ -27,6 +27,6 @@ public class Neighborhood {
     private String name;
 
     @OneToMany(mappedBy = "neighborhood", cascade = CascadeType.ALL)
-    //@JsonIgnore
+    @JsonIgnore
     private List<Block> blocks;
 }
