@@ -42,6 +42,7 @@ public class BlockService {
     //CREATE
     public BlockDTO createBlock(BlockDTO blockDTO){
         Block block = blockMapper.map(blockDTO);
+        block.setId(null); //Para forçar ID a ser null, garantindo a criação de novo registro
         block = blockRepository.save(block);
         return blockMapper.map(block);
     }

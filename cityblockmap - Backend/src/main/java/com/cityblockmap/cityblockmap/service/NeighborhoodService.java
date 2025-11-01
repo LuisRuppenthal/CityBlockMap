@@ -41,6 +41,7 @@ public class NeighborhoodService {
     //CREATE
     public NeighborhoodDTO createNeighborhood(NeighborhoodDTO neighborhoodDTO) {
         Neighborhood neighborhood = neighborhoodMapper.map(neighborhoodDTO);
+        neighborhood.setId(null); //Para forçar ID a ser null, garantindo a criação de novo registro
         neighborhood = neighborhoodRepository.save(neighborhood);
         return neighborhoodMapper.map(neighborhood);
     }

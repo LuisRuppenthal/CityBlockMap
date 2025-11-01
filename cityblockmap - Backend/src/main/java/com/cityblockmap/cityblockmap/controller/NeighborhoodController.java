@@ -4,6 +4,7 @@ import com.cityblockmap.cityblockmap.dto.NeighborhoodDTO;
 import com.cityblockmap.cityblockmap.model.Neighborhood;
 import com.cityblockmap.cityblockmap.repository.NeighborhoodRepository;
 import com.cityblockmap.cityblockmap.service.NeighborhoodService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,8 @@ public class NeighborhoodController {
     // POST
     // /neighborhoods/create
     @PostMapping("/create")
-    public ResponseEntity<NeighborhoodDTO> createNeighborhood(@RequestBody NeighborhoodDTO neighborhoodDTO) {
+    public ResponseEntity<NeighborhoodDTO> createNeighborhood(@Valid @RequestBody NeighborhoodDTO neighborhoodDTO) {
+        neighborhoodDTO.setId(null); //Para ignorar qualquer ID enviado
         NeighborhoodDTO createdNeighborhood = neighborhoodService.createNeighborhood(neighborhoodDTO);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -64,7 +66,7 @@ public class NeighborhoodController {
     // PUT
     // /neighborhoods/{id}
     @PutMapping("/update/{id}")
-    public ResponseEntity<NeighborhoodDTO> updateNeighborhood(@PathVariable("id") Long id, @RequestBody NeighborhoodDTO neighborhoodDTO) {
+    public ResponseEntity<NeighborhoodDTO> updateNeighborhood(@Valid @PathVariable("id") Long id, @RequestBody NeighborhoodDTO neighborhoodDTO) {
 
         if (neighborhoodRepository.existsById(id)){
             return ResponseEntity.status(HttpStatus.OK).body(neighborhoodService.updateNeighborhood(id, neighborhoodDTO));
