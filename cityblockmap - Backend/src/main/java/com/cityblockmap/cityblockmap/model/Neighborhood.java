@@ -29,4 +29,8 @@ public class Neighborhood {
     @OneToMany(mappedBy = "neighborhood", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Block> blocks;
+
+    @ManyToMany(mappedBy = "neighborhoods")
+    @JsonIgnore
+    private List<User> users;
 }

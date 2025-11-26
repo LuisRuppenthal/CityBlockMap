@@ -25,7 +25,7 @@ public class Block {
 
     @ManyToOne
     @JoinColumn(name = "neighborhood_id")
-    //@JsonIgnore
+    @JsonIgnore
     private Neighborhood neighborhood;
 
 
