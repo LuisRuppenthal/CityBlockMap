@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,19 +23,21 @@ public class TestConfig implements CommandLineRunner {
     private final UserRepository userRepository;
     private final NeighborhoodRepository neighborhoodRepository;
     private final BlockRepository blockRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public TestConfig (UserRepository userRepository, NeighborhoodRepository neighborhoodRepository, BlockRepository blockRepository){
+    public TestConfig (UserRepository userRepository, NeighborhoodRepository neighborhoodRepository, BlockRepository blockRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
         this.neighborhoodRepository = neighborhoodRepository;
         this.blockRepository = blockRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
     @Override
     public void run(String... args) throws Exception {
 
-        User u1 = new User(null, "admin", "12345678", UserRole.ADMIN, new ArrayList<>());
-        User u2 = new User(null, "user", "87654321", UserRole.USER, new ArrayList<>());
+        User u1 = new User(null, "admin", passwordEncoder.encode("12345678"), UserRole.ADMIN, new ArrayList<>());
+        User u2 = new User(null, "user", passwordEncoder.encode("87654321"), UserRole.USER, new ArrayList<>());
 
 
         /// //////////////////////////////////////////////////////////////////////////////////////////////////
