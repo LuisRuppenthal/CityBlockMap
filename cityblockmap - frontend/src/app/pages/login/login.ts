@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-//import { DefaultLoginLayout } from '../../components/default-login-layout/default-login-layout';
 
 @Component({
   selector: 'app-login',
