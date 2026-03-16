@@ -1,9 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../core/services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {}
+
+export class Login {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  login = '';
+  password = '';
+  errorMessage = '';
+  loading = false;
+
+  onSubmit(): void {
+    this.errorMessage = '';
+    this.loading = true;
+
+    this.authService.login({
+      login: this.login,
+      password: this.password
+    }).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/blocks']);
+      },
+      error: () => {
+        this.loading = false;
+        this.errorMessage = 'Login ou senha inválidos.';
+      },
+    }
+  );
+  }
+}
