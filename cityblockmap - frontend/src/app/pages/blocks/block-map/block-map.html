@@ -1,1 +1,14 @@
-<p>block-map works!</p>
+<section>
+  @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+  }
+
+  @if (block) {
+    <h1>{{ block.number }}</h1>
+    <p>Bairro: {{ block.neighborhood.name }}</p>
+    <p>Latitude: {{ block.latitude }}</p>
+    <p>Longitude: {{ block.longitude }}</p>
+  }
+
+  <div id="map" style="height: 500px; width: 100%;"></div>
+</section>

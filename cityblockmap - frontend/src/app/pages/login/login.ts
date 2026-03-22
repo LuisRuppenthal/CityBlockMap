@@ -1,15 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../core/services/auth';
+import { AuthService } from '../../core/services/authService';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   imports: [FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './login.css'
 })
-
 export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -34,8 +33,7 @@ export class Login {
       error: () => {
         this.loading = false;
         this.errorMessage = 'Login ou senha inválidos.';
-      },
-    }
-  );
+      }
+    });
   }
 }

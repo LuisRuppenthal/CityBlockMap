@@ -29,17 +29,30 @@ public class BlockController {
     }
 
     //GET
+    // /blocks
+    @GetMapping
+    public ResponseEntity<List<BlockDTO>> getAllBlocksRoot() {
+        return ResponseEntity.ok(blockService.getAllBlocks());
+    }
+
     // /blocks/get
     @GetMapping("/get")
     public ResponseEntity<List<BlockDTO>> getAllBlocks() {
         return ResponseEntity.ok(blockService.getAllBlocks());
     }
 
+    // /blocks/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<BlockDTO> getBlockByIdRoot(@PathVariable("id") Long id) {
+        if (blockRepository.existsById(id)) {
+            return ResponseEntity.ok().body(blockService.getBlockById(id));
+        }
+        return ResponseEntity.notFound().build();
+    }
 
     // /blocks/get/{id}
     @GetMapping("get/{id}")
     public ResponseEntity<BlockDTO> getBlockById(@PathVariable("id") Long id) {
-
         if (blockRepository.existsById(id)) {
             return ResponseEntity.ok().body(blockService.getBlockById(id));
         }

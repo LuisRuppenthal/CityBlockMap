@@ -1,1 +1,27 @@
-<p>block-list works!</p>
+<section>
+  <h1>Lista de Quadras</h1>
+
+  @if (loading) {
+    <p>Carregando quadras...</p>
+  }
+
+  @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+  }
+
+  @if (!loading && !errorMessage && blocks.length > 0) {
+    <ul>
+      @for (block of blocks; track block.id) {
+        <li>
+          <button type="button" (click)="openBlock(block.id)">
+            {{ block.number }} - {{ block.neighborhood.name }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+
+  @if (!loading && !errorMessage && blocks.length === 0) {
+    <p>Nenhuma quadra encontrada.</p>
+  }
+</section>
