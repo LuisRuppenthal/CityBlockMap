@@ -5,6 +5,18 @@ import * as L from 'leaflet';
 import { Block } from '../../../core/models/block.model';
 import { BlockService } from '../../../core/services/blockService';
 
+const iconDefault = L.icon({
+  iconUrl: 'marker-icon.png',
+  shadowUrl: 'marker-shadow.png',
+  iconRetinaUrl: 'marker-icon-2x.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+L.Marker.prototype.options.icon = iconDefault;
+
 @Component({
   selector: 'app-block-map',
   standalone: true,
