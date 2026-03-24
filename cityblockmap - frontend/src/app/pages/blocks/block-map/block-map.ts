@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
@@ -27,6 +27,7 @@ L.Marker.prototype.options.icon = iconDefault;
 export class BlockMap implements AfterViewInit {
   private route = inject(ActivatedRoute);
   private blockService = inject(BlockService);
+  private cdr = inject(ChangeDetectorRef);
 
   block?: Block;
   errorMessage = '';
@@ -43,10 +44,19 @@ export class BlockMap implements AfterViewInit {
     this.blockService.getById(id).subscribe({
       next: (response) => {
         this.block = response;
+        this.cdr.detectChanges(); // atualiza o DOM antes de iniciar o mapa
+
+        
+        if (this.map) {
+          this.map.remove();
+          this.map = undefined;
+        }
+
         this.initMap(response.latitude, response.longitude, response.number);
       },
       error: () => {
         this.errorMessage = 'Erro ao carregar a quadra.';
+        this.cdr.detectChanges();
       }
     });
   }

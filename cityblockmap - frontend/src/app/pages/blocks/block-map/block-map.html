@@ -1,14 +1,29 @@
 <section>
   @if (errorMessage) {
-    <p>{{ errorMessage }}</p>
+    <p class="error-message">{{ errorMessage }}</p>
   }
 
   @if (block) {
-    <h1>{{ block.number }}</h1>
-    <p>Bairro: {{ block.neighborhood.name }}</p>
-    <p>Latitude: {{ block.latitude }}</p>
-    <p>Longitude: {{ block.longitude }}</p>
+    <div class="info-card">
+      <h1>{{ block.number }}</h1>
+      <div class="info-row">
+        <div class="info-item">
+          <span class="info-label">Bairro</span>
+          <span class="info-value">{{ block.neighborhood.name }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Latitude</span>
+          <span class="info-value">{{ block.latitude }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Longitude</span>
+          <span class="info-value">{{ block.longitude }}</span>
+        </div>
+      </div>
+    </div>
   }
 
-  <div id="map" style="height: 500px; width: 100%;"></div>
+  <div class="map-card">
+    <div id="map"></div>
+  </div>
 </section>
