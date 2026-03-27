@@ -44,7 +44,7 @@ export class BlockMap implements AfterViewInit {
     this.blockService.getById(id).subscribe({
       next: (response) => {
         this.block = response;
-        this.cdr.detectChanges(); // atualiza o DOM antes de iniciar o mapa
+        this.cdr.detectChanges(); // Necessário para atualizar o DOM e evitar outro bug que estava ocorrendo
 
         
         if (this.map) {

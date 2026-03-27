@@ -1,1 +1,15 @@
+@if (isAuthenticated()) {
+  <header class="app-header">
+    <div class="header-brand">
+      <!--<span class="brand-dot"></span>-->
+      <!--<span class="brand-name">CityBlockMap</span>-->
+    </div>
+
+    <div class="header-actions">
+      <span class="header-user">{{ getLogin() }}</span>
+      <button class="btn-logout" (click)="logout()">Sair</button>
+    </div>
+  </header>
+}
+
 <router-outlet></router-outlet>
