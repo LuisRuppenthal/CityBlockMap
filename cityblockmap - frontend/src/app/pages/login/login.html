@@ -27,11 +27,7 @@
                     <!--<span class="input-icon"></span>-->
                 </div>
             </div>
-
-            <div class="forgot-password">
-                <a href="#">Esqueceu a senha?</a>
-            </div>
-
+            
             @if (errorMessage) {
             <p>{{ errorMessage }}</p>
             }
@@ -39,12 +35,6 @@
             <button type="submit" class="btn btn-primary" [disabled]="loading">
                 {{ loading ? 'Entrando...' : 'Login' }}
             </button>
-
-            <div class="divider">
-                <span>or</span>
-            </div>
-
-            <button type="button" class="btn btn-secondary">Inscreva-se</button>
         </form>
     </section>
 

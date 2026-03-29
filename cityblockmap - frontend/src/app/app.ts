@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './core/services/authService';
-import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +16,19 @@ export class App {
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  //Trecho necessário para esconder o header quando se está na pagina de Login
+  currentRoute = '';
+
+  constructor() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.currentRoute = event.urlAfterRedirects;
+    });
+  }
+
   isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
+    return this.authService.isAuthenticated() && this.currentRoute !== '/login';
   }
 
   getLogin(): string {
