@@ -13,8 +13,7 @@ export class BlockService {
 
   getAll(): Observable<Block[]> {
   return this.http.get<Block[]>(this.apiUrl)
-  .pipe(tap(response => console.log('Resposta do backend:', response))
-  );
+  //.pipe(tap(response => console.log('Resposta do backend:', response)));
 }
 
   getById(id: number): Observable<Block> {

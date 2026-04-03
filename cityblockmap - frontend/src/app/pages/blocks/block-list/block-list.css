@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700&display=swap');
 
-:host {
+:host { 
   --blue-900: #0f1f3d;
   --blue-700: #1a3a6e;
   --blue-500: #2563eb;

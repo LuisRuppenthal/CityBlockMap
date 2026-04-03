@@ -1,15 +1,38 @@
 @if (isAuthenticated()) {
-  <header class="app-header">
-    <div class="header-brand">
-      <!--<span class="brand-dot"></span>-->
-      <!--<span class="brand-name">CityBlockMap</span>-->
+<header class="app-header">
+  <div class="header-brand">
+    <!--<span class="brand-dot"></span>-->
+    <!--<span class="brand-name">CityBlockMap</span>-->
+  </div>
+
+  <div class="header-actions">
+
+    <div class="user-menu" (click)="toggleUserMenu()">
+      <div class="user-info">
+        <span id="userName">{{ getLogin() }}</span>
+        <span class="dropdown-arrow" [class.open]="isMenuOpen">▲</span>
+      </div>
+
+      <div class="dropdown-content" *ngIf="isMenuOpen">
+        
+        @if (isAdmin()) {
+        <button class="dropdown-item new-user" (click)="goToRegister()">+ Novo Usuário</button>
+        }
+
+        <button class="dropdown-item settings" (click)="goToSettings()">Configurações</button>
+
+        <button class="dropdown-item logout" (click)="logout()">Sair</button>
+      </div>
     </div>
 
-    <div class="header-actions">
-      <span class="header-user">{{ getLogin() }}</span>
-      <button class="btn-logout" (click)="logout()">Sair</button>
-    </div>
-  </header>
+    <!--<span class="header-user">{{ getLogin() }}</span>-->
+    <!--<button type="button" class="btn-new-user" (click)="goToRegister()">
+      + Novo Usuário
+    </button>-->
+    <!--<button class="btn-logout" (click)="logout()">Sair</button>-->
+  </div>
+
+</header>
 }
 
 <router-outlet></router-outlet>

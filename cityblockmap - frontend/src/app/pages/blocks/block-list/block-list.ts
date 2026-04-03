@@ -31,7 +31,7 @@ export class BlockList implements OnInit {
       next: (response) => {
         this.blocks = response;
         this.loading = false;
-        this.cdr.detectChanges(); 
+        this.cdr.detectChanges();
       },
       error: () => {
         this.errorMessage = 'Erro ao carregar as quadras.';
