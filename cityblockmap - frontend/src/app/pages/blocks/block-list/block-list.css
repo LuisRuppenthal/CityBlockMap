@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700&display=swap');
 
-:host { 
+/* --------------------------------------------------
+   HOST / CONFIGURAÇÃO DO COMPONENTE
+-------------------------------------------------- */
+:host {
   --blue-900: #0f1f3d;
   --blue-700: #1a3a6e;
   --blue-500: #2563eb;
@@ -20,10 +23,23 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+/* --------------------------------------------------
+   LAYOUT PRINCIPAL
+-------------------------------------------------- */
 section {
   min-height: 100vh;
   background: linear-gradient(145deg, var(--blue-50) 0%, var(--gray-100) 100%);
   padding: 48px 24px;
+}
+
+/* --------------------------------------------------
+   CABEÇALHO DA LISTA
+-------------------------------------------------- */
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
 }
 
 h1 {
@@ -31,7 +47,7 @@ h1 {
   font-size: 2rem;
   font-weight: 700;
   color: var(--blue-900);
-  margin: 0 0 32px 0;
+  margin: 0;
   letter-spacing: -0.5px;
   position: relative;
   display: inline-block;
@@ -47,12 +63,18 @@ h1::after {
   margin-top: 8px;
 }
 
+/* --------------------------------------------------
+   MENSAGENS
+-------------------------------------------------- */
 p {
   font-size: 0.95rem;
   color: var(--gray-600);
   margin: 0 0 16px 0;
 }
 
+/* --------------------------------------------------
+   LISTA DE QUADRAS
+-------------------------------------------------- */
 ul {
   list-style: none;
   padding: 0;
@@ -62,6 +84,9 @@ ul {
   gap: 16px;
 }
 
+/* --------------------------------------------------
+   ANIMAÇÕES DE ENTRADA
+-------------------------------------------------- */
 li {
   animation: fadeUp 0.3s ease both;
 }
@@ -78,6 +103,9 @@ li:nth-child(4) { animation-delay: 0.20s; }
 li:nth-child(5) { animation-delay: 0.25s; }
 li:nth-child(6) { animation-delay: 0.30s; }
 
+/* --------------------------------------------------
+   BOTÃO DE QUADRA
+-------------------------------------------------- */
 button {
   width: 100%;
   padding: 20px 24px;
@@ -108,6 +136,9 @@ button::before {
   transition: transform 0.2s ease;
 }
 
+/* --------------------------------------------------
+   ESTADOS DO BOTÃO
+-------------------------------------------------- */
 button:hover {
   border-color: var(--blue-400);
   box-shadow: var(--shadow-lg);
@@ -122,4 +153,34 @@ button:hover::before {
 button:active {
   transform: translateY(0);
   box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------
+   BOTÃO NOVO USUÁRIO
+-------------------------------------------------- */
+.btn-new-user {
+  width: auto;
+  padding: 10px 20px;
+  background: var(--blue-500);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+}
+
+.btn-new-user::before {
+  display: none;
+}
+
+.btn-new-user:hover {
+  background: var(--blue-700);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
+  border-color: transparent;
+  color: var(--white);
 }
