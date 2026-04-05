@@ -1,9 +1,24 @@
 /* --------------------------------------------------
    HOST / CONFIGURAÇÃO DO COMPONENTE
 -------------------------------------------------- */
-:host {
+:host { 
+  --blue-900: #0f1f3d;
+  --blue-700: #1a3a6e;
+  --blue-500: #2563eb;
+  --blue-400: #3b82f6;
+  --blue-100: #dbeafe;
+  --blue-50:  #eff6ff;
+  --gray-900: #111827;
+  --gray-600: #4b5563;
+  --gray-300: #d1d5db;
+  --gray-100: #f3f4f6;
+  --white:    #ffffff;
+  --shadow-sm: 0 1px 3px rgba(15, 31, 61, 0.08), 0 1px 2px rgba(15, 31, 61, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 31, 61, 0.12), 0 2px 6px rgba(15, 31, 61, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 31, 61, 0.16), 0 4px 10px rgba(15, 31, 61, 0.10);
+  --radius: 14px;
   display: block;
-  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
 }
 
 * {

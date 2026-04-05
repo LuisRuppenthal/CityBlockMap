@@ -5,6 +5,7 @@ import { BlockMap } from './pages/blocks/block-map/block-map';
 import { Register } from './pages/register/register';
 import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
+import { NotFound } from './pages/not-found/not-found';
 
 export const routes: Routes = [
 
@@ -14,10 +15,11 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
 
-    /*{
-        path: '**',
-        redirectTo: 'login'
-    },*/
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
 
     {
         path: 'login',
@@ -40,5 +42,10 @@ export const routes: Routes = [
         path: 'blocks/:id',
         component: BlockMap,
         canActivate: [authGuard]
+    },
+
+    {
+        path: '**',
+        component: NotFound
     }
 ];
