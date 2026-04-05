@@ -3,6 +3,7 @@ import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './core/services/authService';
 import { filter } from 'rxjs';
+import { SessionExpiredService } from './core/services/session-expired-service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class App {
 
   private authService = inject(AuthService);
   private router = inject(Router);
+  readonly sessionExpiredService = inject(SessionExpiredService);
 
   //Trecho necessário para esconder o header quando se está na pagina de Login
   currentRoute = '';

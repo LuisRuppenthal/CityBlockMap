@@ -1,3 +1,9 @@
+@if (sessionExpiredService.visible()) {
+  <div class="session-expired-banner">
+    <span>⚠️ Sua sessão expirou. Redirecionando para o login...</span>
+  </div>
+}
+
 @if (isAuthenticated()) {
 <header class="app-header">
   <div class="header-brand">
