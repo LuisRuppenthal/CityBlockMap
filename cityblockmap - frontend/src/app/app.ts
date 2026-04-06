@@ -60,6 +60,10 @@ export class App {
     this.router.navigate(['/register']);
   }
 
+  goToBlockRegister(): void {
+    this.router.navigate(['/block-register']);
+  }
+
   goToSettings(): void {
     this.isMenuOpen = false;
     console.log("Não implementado")

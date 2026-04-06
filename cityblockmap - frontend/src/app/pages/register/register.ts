@@ -19,7 +19,7 @@ interface Neighborhood {
 export class Register implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
-
+ 
   form = {
     login: '',
     password: '',

@@ -6,14 +6,9 @@ import { Register } from './pages/register/register';
 import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
 import { NotFound } from './pages/not-found/not-found';
+import { BlockRegister } from './pages/blocks/block-register/block-register';
 
 export const routes: Routes = [
-
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
 
     {
         path: '',
@@ -36,6 +31,12 @@ export const routes: Routes = [
         path: 'blocks',
         component: BlockList,
         canActivate: [authGuard]
+    },
+
+    {
+        path: 'block-register',
+        component: BlockRegister,
+        canActivate: [adminGuard]
     },
 
     {
