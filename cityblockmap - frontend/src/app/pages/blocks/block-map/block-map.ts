@@ -73,4 +73,4 @@ export class BlockMap implements AfterViewInit {
       .bindPopup(number)
       .openPopup();
   }
-}
+} 

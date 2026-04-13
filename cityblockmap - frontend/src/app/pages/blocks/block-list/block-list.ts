@@ -3,6 +3,7 @@ import { BlockService } from '../../../core/services/blockService';
 import { Router } from '@angular/router';
 import { Block } from '../../../core/models/block.model';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../core/services/authService';
 
 @Component({
   selector: 'app-block-list',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BlockList implements OnInit {
 
+  private authService = inject(AuthService);
   private blockService = inject(BlockService);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef)
@@ -22,6 +24,21 @@ export class BlockList implements OnInit {
 
   ngOnInit(): void {
     this.loadBlocks();
+  }
+
+  isAdmin(): boolean {
+    const token = this.authService.getToken();
+    if (!token) return false;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role === 'ADMIN';
+    } catch {
+      return false;
+    }
+  }
+
+  goToBlockEdit(id: number): void {
+    this.router.navigate(['/block-edit', id]);
   }
 
   loadBlocks(): void {
