@@ -1,7 +1,4 @@
-export interface Neighborhood {
-    id: number;
-    name: string;
-}
+import { Neighborhood } from "./neighborhood.model";
 
 export interface Block {
     id: number;

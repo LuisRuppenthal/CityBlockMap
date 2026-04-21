@@ -8,6 +8,8 @@ import { adminGuard } from './core/guards/admin-guard';
 import { NotFound } from './pages/not-found/not-found';
 import { BlockRegister } from './pages/blocks/block-register/block-register';
 import { BlockEdit } from './pages/blocks/block-edit/block-edit';
+import { Path } from 'leaflet';
+import { NeighborhoodList } from './pages/neighborhoods/neighborhood-list/neighborhood-list';
 
 export const routes: Routes = [
 
@@ -26,6 +28,12 @@ export const routes: Routes = [
         path: 'register',
         component: Register,
         canActivate: [adminGuard]
+    },
+
+    {
+        path: 'neighborhoods',
+        component: NeighborhoodList,
+        canActivate: [authGuard]
     },
 
     {

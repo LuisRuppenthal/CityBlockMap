@@ -29,6 +29,12 @@ public class NeighborhoodController {
     }
 
     // GET
+    // /neighborhoods
+    @GetMapping
+    public ResponseEntity<List<NeighborhoodDTO>> getAllNeighborhoodsRoot() {
+        return ResponseEntity.ok(neighborhoodService.getAllNeighborhoods());
+    }
+
     // /neighborhoods/get
     @GetMapping("/get")
     public ResponseEntity<List<NeighborhoodDTO>> getAllNeighborhoods() {
