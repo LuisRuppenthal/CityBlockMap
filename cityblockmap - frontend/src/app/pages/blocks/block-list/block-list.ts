@@ -45,8 +45,9 @@ export class BlockList implements OnInit {
 
     ref.closed.subscribe(resultado => {
       if (resultado ==='confirmado') {
-        this.loadBlocks();
+        this.loadBlocks()
       }
+      window.location.reload()
     });
   }
 
