@@ -73,6 +73,7 @@ export class BlockEdit implements OnInit {
           neighborhoodId: String(block.neighborhood.id)
         };
         this.loadingBlock = false;
+        this.cdr.detectChanges(); 
       },
       error: () => {
         this.errorMessage = 'Erro ao carregar a quadra.';

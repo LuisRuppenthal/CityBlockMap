@@ -213,8 +213,11 @@ button:active {
 
 
 
-.block_button {
+.block_buttons {
   color: #ff00d4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .block_edit_button {
@@ -236,6 +239,29 @@ button:active {
 .block_edit_button:hover {
   color: rgb(17, 0, 255);
   background: #f2f3fe;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.block_delete_button {
+  position: relative;
+  padding: 8px 16px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  color: var(--gray-600);
+  background-image: 'public\editar.png';
+}
+
+.block_delete_button img {
+  width: 16px;
+  height: 16px;
+  align-items: center;
+}
+
+.block_delete_button:hover {
+  color: rgb(255, 0, 0);
+  background: #fde8e8;
   cursor: pointer;
   transition: all 0.3s ease;
 }

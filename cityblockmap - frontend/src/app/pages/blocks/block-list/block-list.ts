@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Block } from '../../../core/models/block.model';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/authService';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
+import { DeleteModal } from '../../../modals/delete-modal/delete-modal';
 
 @Component({
   selector: 'app-block-list',
@@ -17,6 +19,7 @@ export class BlockList implements OnInit {
   private blockService = inject(BlockService);
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef)
+  private dialog = inject(Dialog);
 
   blocks: Block[] = [];
   loading = false;
@@ -35,6 +38,16 @@ export class BlockList implements OnInit {
     } catch {
       return false;
     }
+  }
+
+  protected openDeleteModal(id:number) {
+    const ref = this.dialog.open(DeleteModal, { disableClose: true, data: {id}});
+
+    ref.closed.subscribe(resultado => {
+      if (resultado ==='confirmado') {
+        this.loadBlocks();
+      }
+    });
   }
 
   goToBlockEdit(id: number): void {
