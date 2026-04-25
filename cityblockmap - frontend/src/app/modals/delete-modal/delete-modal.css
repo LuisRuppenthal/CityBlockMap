@@ -40,15 +40,10 @@
    ÍCONE DE AVISO
 -------------------------------------------------- */
 .modal-card img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  background: #fef2f2;
   margin-bottom: 20px;
-  font-size: 1.4rem;
+  display: block;
 }
 
 /* --------------------------------------------------

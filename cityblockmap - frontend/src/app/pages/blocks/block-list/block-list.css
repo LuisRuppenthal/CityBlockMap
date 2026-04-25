@@ -9,12 +9,12 @@
   --blue-500: #2563eb;
   --blue-400: #3b82f6;
   --blue-100: #dbeafe;
-  --blue-50: #eff6ff;
+  --blue-50:  #eff6ff;
   --gray-900: #111827;
   --gray-600: #4b5563;
   --gray-300: #d1d5db;
   --gray-100: #f3f4f6;
-  --white: #ffffff;
+  --white:    #ffffff;
   --shadow-sm: 0 1px 3px rgba(15, 31, 61, 0.08), 0 1px 2px rgba(15, 31, 61, 0.06);
   --shadow-md: 0 4px 16px rgba(15, 31, 61, 0.12), 0 2px 6px rgba(15, 31, 61, 0.08);
   --shadow-lg: 0 12px 32px rgba(15, 31, 61, 0.16), 0 4px 10px rgba(15, 31, 61, 0.10);
@@ -92,42 +92,6 @@ li {
   animation: fadeUp 0.3s ease both;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-li:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-li:nth-child(2) {
-  animation-delay: 0.10s;
-}
-
-li:nth-child(3) {
-  animation-delay: 0.15s;
-}
-
-li:nth-child(4) {
-  animation-delay: 0.20s;
-}
-
-li:nth-child(5) {
-  animation-delay: 0.25s;
-}
-
-li:nth-child(6) {
-  animation-delay: 0.30s;
-}
-
 /* --------------------------------------------------
    BOTÃO DE QUADRA
 -------------------------------------------------- */
@@ -181,7 +145,7 @@ button:active {
 }
 
 /* --------------------------------------------------
-   BOTÃO NOVO USUÁRIO
+   BOTÃO NOVO
 -------------------------------------------------- */
 .btn-new-user {
   width: auto;
@@ -210,39 +174,16 @@ button:active {
   color: var(--white);
 }
 
-
-
-
+/* --------------------------------------------------
+   BOTÕES DE AÇÃO (EDITAR/DELETAR)
+-------------------------------------------------- */
 .block_buttons {
-  color: #ff00d4;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.block_edit_button {
-  position: relative;
-  padding: 8px 16px;
-  background: var(--white);
-  border: 1px solid var(--gray-300);
-  border-radius: var(--radius);
-  color: var(--gray-600);
-  background-image: 'public\editar.png';
-}
-
-.block_edit_button img {
-  width: 16px;
-  height: 16px;
-  align-items: center;
-}
-
-.block_edit_button:hover {
-  color: rgb(17, 0, 255);
-  background: #f2f3fe;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
+.block_edit_button,
 .block_delete_button {
   position: relative;
   padding: 8px 16px;
@@ -250,18 +191,37 @@ button:active {
   border: 1px solid var(--gray-300);
   border-radius: var(--radius);
   color: var(--gray-600);
-  background-image: 'public\editar.png';
+  transition: all 0.3s ease;
 }
 
+.block_edit_button img,
 .block_delete_button img {
   width: 16px;
   height: 16px;
-  align-items: center;
+  display: block;
+}
+
+/* --------------------------------------------------
+   ESTADOS DOS BOTÕES DE AÇÃO
+-------------------------------------------------- */
+.block_edit_button:hover {
+  color: var(--blue-500);
+  background: var(--blue-50);
+  border-color: var(--blue-400);
+  cursor: pointer;
 }
 
 .block_delete_button:hover {
-  color: rgb(255, 0, 0);
-  background: #fde8e8;
+  color: #dc2626;
+  background: #fef2f2;
+  border-color: #fecaca;
   cursor: pointer;
-  transition: all 0.3s ease;
+}
+
+/* --------------------------------------------------
+   ANIMAÇÕES
+-------------------------------------------------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
