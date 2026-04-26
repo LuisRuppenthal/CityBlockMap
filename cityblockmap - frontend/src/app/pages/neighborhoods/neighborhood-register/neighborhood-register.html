@@ -1,29 +1,26 @@
 <section>
-  <div class="register-card">
-    <div class="card-header">
-      <h1>Nova Quadra</h1>
-      <p>Preencha os dados para cadastrar uma nova quadra</p>
-    </div>
+    <div class="register-card">
+        <div class="card-header">
+            <h1>Novo Bairro</h1>
+            <p>Preencha os dados para cadastrar um novo bairro</p>
+        </div>
 
-    @if (errorMessage) {
-      <div class="alert alert-error">{{ errorMessage }}</div>
-    }
+        @if (errorMessage) {
+        <div class="alert alert-error">{{ errorMessage }}</div>
+        }
 
-    @if (successMessage) {
-      <div class="alert alert-success">{{ successMessage }}</div>
-    } 
+        @if (successMessage) {
+        <div class="alert alert-success">{{ successMessage }}</div>
+        }
 
-    <div class="form">
-      <div class="field">
-        <label for="number">Número / Nome</label>
-        <input
-          id="number"
-          type="text"
-          placeholder="Ex: Quadra 05"
-          [(ngModel)]="form.number"
-        />
-      </div>
 
+        <div class="form">
+            <div class="field">
+                <label for="name">Nome do Bairro</label>
+                <input id="name" type="text" placeholder="Ex: Parque X" [(ngModel)]="form.name" />
+            </div>
+
+            <!--
       <div class="field">
         <label for="latitude">Latitude <span class="field-hint">(-90 a 90)</span></label>
         <input
@@ -63,13 +60,14 @@
           </select>
         }
       </div>
+      -->
 
-      <div class="actions">
-        <button class="btn-secondary" type="button" (click)="goBack()">Cancelar</button>
-        <button class="btn-primary" type="button" (click)="register()" [disabled]="loading">
-          {{ loading ? 'Cadastrando...' : 'Cadastrar' }}
-        </button>
-      </div>
+            <div class="actions">
+                <button class="btn-secondary" type="button" (click)="goBack()">Cancelar</button>
+                <button class="btn-primary" type="button" (click)="register()" [disabled]="loading">
+                    {{ loading ? 'Cadastrando...' : 'Cadastrar' }}
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </section>

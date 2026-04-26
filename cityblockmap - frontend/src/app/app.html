@@ -23,10 +23,12 @@
         
         @if (isAdmin()) {
         <button class="dropdown-item new-user" (click)="goToRegister()">+ Novo Usuário</button>
-        }
+        
+        
+        <button class="dropdown-item new-user" (click)="goToNeighborhoodRegister()">+ Novo Bairro</button>
 
         <button class="dropdown-item new-user" (click)="goToBlockRegister()">+ Nova quadra</button>
-
+        }
         <button class="dropdown-item settings" (click)="goToSettings()">Configurações</button>
 
         <button class="dropdown-item logout" (click)="logout()">Sair</button>

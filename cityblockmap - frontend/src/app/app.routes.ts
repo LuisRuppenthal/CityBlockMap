@@ -10,6 +10,7 @@ import { BlockRegister } from './pages/blocks/block-register/block-register';
 import { BlockEdit } from './pages/blocks/block-edit/block-edit';
 import { Path } from 'leaflet';
 import { NeighborhoodList } from './pages/neighborhoods/neighborhood-list/neighborhood-list';
+import { NeighborhoodRegister } from './pages/neighborhoods/neighborhood-register/neighborhood-register';
 
 export const routes: Routes = [
 
@@ -34,6 +35,12 @@ export const routes: Routes = [
         path: 'neighborhoods',
         component: NeighborhoodList,
         canActivate: [authGuard]
+    },
+
+    {
+        path: 'neighborhood-register',
+        component: NeighborhoodRegister,
+        canActivate: [adminGuard]
     },
 
     {

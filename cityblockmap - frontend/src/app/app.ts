@@ -60,6 +60,10 @@ export class App {
     this.router.navigate(['/register']);
   }
 
+  goToNeighborhoodRegister(): void {
+    this.router.navigate(['/neighborhood-register']);
+  }
+
   goToBlockRegister(): void {
     this.router.navigate(['/block-register']);
   }
