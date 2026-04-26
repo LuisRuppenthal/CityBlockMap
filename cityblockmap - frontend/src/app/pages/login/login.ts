@@ -28,7 +28,7 @@ export class Login {
     }).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/neighborhoods']);
+        this.router.navigate(['/dashboard']);
       },
       error: () => {
         this.loading = false;

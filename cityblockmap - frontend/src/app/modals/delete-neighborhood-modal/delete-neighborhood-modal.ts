@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
 @Component({
-  selector: 'app-delete-modal',
+  selector: 'app-delete-neighborhood-modal',
   imports: [],
   templateUrl: './delete-neighborhood-modal.html',
   styleUrl: './delete-neighborhood-modal.css',

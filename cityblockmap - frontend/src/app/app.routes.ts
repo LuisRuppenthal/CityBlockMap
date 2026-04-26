@@ -8,10 +8,10 @@ import { adminGuard } from './core/guards/admin-guard';
 import { NotFound } from './pages/not-found/not-found';
 import { BlockRegister } from './pages/blocks/block-register/block-register';
 import { BlockEdit } from './pages/blocks/block-edit/block-edit';
-import { Path } from 'leaflet';
 import { NeighborhoodList } from './pages/neighborhoods/neighborhood-list/neighborhood-list';
 import { NeighborhoodRegister } from './pages/neighborhoods/neighborhood-register/neighborhood-register';
 import { NeighborhoodEdit } from './pages/neighborhoods/neighborhood-edit/neighborhood-edit';
+import { Dashboard } from './pages/dashboard/dashboard';
 
 export const routes: Routes = [
 
@@ -19,6 +19,12 @@ export const routes: Routes = [
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
+    },
+
+    {
+        path: 'dashboard',
+        component: Dashboard,
+        canActivate: [authGuard]
     },
 
     {
