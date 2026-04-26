@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
 @Component({
-  selector: 'app-delete-modal',
+  selector: 'app-delete-block-modal',
   imports: [],
-  templateUrl: './delete-modal.html',
-  styleUrl: './delete-modal.css',
+  templateUrl: './delete-block-modal.html',
+  styleUrl: './delete-block-modal.css',
 })
-export class DeleteModal {
+export class DeleteBlockModal {
   private dialogRef = inject(DialogRef);
   private http = inject(HttpClient);
   private data = inject(DIALOG_DATA);

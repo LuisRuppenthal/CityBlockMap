@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/services/authService';
 import { Router } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
 import { Neighborhood } from '../../../core/models/neighborhood.model';
+import { DeleteNeighborhoodModal } from '../../../modals/delete-neighborhood-modal/delete-neighborhood-modal';
 
 @Component({
   selector: 'app-neighborhood-list',
@@ -37,21 +38,20 @@ export class NeighborhoodList {
     }
   }
 
-  protected openDeleteModal(id:number) {
-    console.log("Não implementado");
-      /*const ref = this.dialog.open(DeleteModal, { disableClose: true, data: {id}});
-  
-      ref.closed.subscribe(resultado => {
-        if (resultado ==='confirmado') {
-          this.loadBlocks()
-        }
-        window.location.reload()
-      });*/
-    }
-  
-    goToNeighborhoodEdit(id: number): void {
-      this.router.navigate(['/neighborhood-edit', id]);
-    }
+  protected openDeleteModal(id: number) {
+    const ref = this.dialog.open(DeleteNeighborhoodModal, { disableClose: true, data: { id } });
+
+    ref.closed.subscribe(resultado => {
+      if (resultado === 'confirmado') {
+        this.loadNeighborhoods()
+      }
+      window.location.reload()
+    });
+  }
+
+  goToNeighborhoodEdit(id: number): void {
+    this.router.navigate(['/neighborhood-edit', id]);
+  }
 
   loadNeighborhoods(): void {
     this.loading = true;

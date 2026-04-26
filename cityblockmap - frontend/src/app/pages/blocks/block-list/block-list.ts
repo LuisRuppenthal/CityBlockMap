@@ -5,7 +5,7 @@ import { Block } from '../../../core/models/block.model';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/authService';
 import { Dialog, DialogRef } from '@angular/cdk/dialog';
-import { DeleteModal } from '../../../modals/delete-modal/delete-modal';
+import { DeleteBlockModal } from '../../../modals/delete-block-modal/delete-block-modal';
 
 @Component({
   selector: 'app-block-list',
@@ -41,7 +41,7 @@ export class BlockList implements OnInit {
   }
 
   protected openDeleteModal(id:number) {
-    const ref = this.dialog.open(DeleteModal, { disableClose: true, data: {id}});
+    const ref = this.dialog.open(DeleteBlockModal, { disableClose: true, data: {id}});
 
     ref.closed.subscribe(resultado => {
       if (resultado ==='confirmado') {
