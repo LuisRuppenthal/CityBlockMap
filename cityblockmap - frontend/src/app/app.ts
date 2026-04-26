@@ -56,6 +56,10 @@ export class App {
     }
   }
 
+  goBack(): void {
+    this.router.navigate(['/neighborhoods']);
+  }
+
   goToRegister(): void {
     this.router.navigate(['/register']);
   }

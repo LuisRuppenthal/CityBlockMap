@@ -41,7 +41,7 @@ export class BlockRegister {
   }
 
   goBack(): void {
-    this.router.navigate(['/blocks']);
+    this.router.navigate(['/neighborhoods']);
   }
 
   loadNeighborhoods(): void {

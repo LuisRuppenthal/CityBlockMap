@@ -5,10 +5,10 @@
 }
 
 @if (isAuthenticated()) {
-<header class="app-header">
-  <div class="header-brand">
+<header class="app-header"> 
+  <div class="header-brand" (click)="goBack()">
     <!--<span class="brand-dot"></span>-->
-    <!--<span class="brand-name">CityBlockMap</span>-->
+    <div class="brand-name">CityBlockMap</div>
   </div>
 
   <div class="header-actions">
@@ -21,9 +21,9 @@
  
       <div class="dropdown-content" *ngIf="isMenuOpen">
         
-        @if (isAdmin()) {
+        @if (isAdmin()) 
+        {
         <button class="dropdown-item new-user" (click)="goToRegister()">+ Novo Usuário</button>
-        
         
         <button class="dropdown-item new-user" (click)="goToNeighborhoodRegister()">+ Novo Bairro</button>
 
