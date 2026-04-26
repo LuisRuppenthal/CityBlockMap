@@ -50,8 +50,7 @@ export class NeighborhoodList {
     }
   
     goToNeighborhoodEdit(id: number): void {
-      console.log("Não implementado");
-      //this.router.navigate(['/block-edit', id]);
+      this.router.navigate(['/neighborhood-edit', id]);
     }
 
   loadNeighborhoods(): void {

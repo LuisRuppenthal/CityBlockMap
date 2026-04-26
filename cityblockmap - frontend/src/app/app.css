@@ -166,6 +166,16 @@
   color: #2926dc;
 }
 
+.dropdown-item.new-neighborhood:hover {
+  background: #f2f3fe;
+  color: #2926dc;
+}
+
+.dropdown-item.new-block:hover {
+  background: #f2f3fe;
+  color: #2926dc;
+}
+
 .dropdown-item.settings:hover {
   background: #f5fef2;
   color: #3aad1d;

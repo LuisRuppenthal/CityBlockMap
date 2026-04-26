@@ -11,6 +11,7 @@ import { BlockEdit } from './pages/blocks/block-edit/block-edit';
 import { Path } from 'leaflet';
 import { NeighborhoodList } from './pages/neighborhoods/neighborhood-list/neighborhood-list';
 import { NeighborhoodRegister } from './pages/neighborhoods/neighborhood-register/neighborhood-register';
+import { NeighborhoodEdit } from './pages/neighborhoods/neighborhood-edit/neighborhood-edit';
 
 export const routes: Routes = [
 
@@ -40,6 +41,12 @@ export const routes: Routes = [
     {
         path: 'neighborhood-register',
         component: NeighborhoodRegister,
+        canActivate: [adminGuard]
+    },
+
+    {
+        path: 'neighborhood-edit/:id',
+        component: NeighborhoodEdit,
         canActivate: [adminGuard]
     },
 
