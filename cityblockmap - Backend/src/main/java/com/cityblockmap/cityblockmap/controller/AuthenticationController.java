@@ -5,6 +5,7 @@ import com.cityblockmap.cityblockmap.dto.AuthenticationDTO;
 import com.cityblockmap.cityblockmap.dto.LoginResponseDTO;
 import com.cityblockmap.cityblockmap.dto.RegisterDTO;
 import com.cityblockmap.cityblockmap.model.User;
+import com.cityblockmap.cityblockmap.model.UserRole;
 import com.cityblockmap.cityblockmap.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,9 @@ public class AuthenticationController {
         if(this.userRepository.findByLogin(registerDTO.login()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(registerDTO.password());
-        User newUser = new User(registerDTO.login(), encryptedPassword, registerDTO.role());
+        User newUser = new User(registerDTO.login(), encryptedPassword, UserRole.USER);
 
         this.userRepository.save(newUser);
-
         return ResponseEntity.ok().build();
     }
 

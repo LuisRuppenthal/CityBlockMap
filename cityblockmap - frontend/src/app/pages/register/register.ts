@@ -84,7 +84,7 @@ export class Register implements OnInit {
         this.loading = false;
         this.form = { login: '', password: '', role: '' };
         //this.selectedNeighborhoods = [];
-        setTimeout(() => this.router.navigate(['/blocks']), 1500);
+        setTimeout(() => this.router.navigate(['/dashboard']), 1500);
       },
       error: (err) => {
         this.loading = false;
@@ -98,6 +98,6 @@ export class Register implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/blocks']);
+    this.router.navigate(['/dashboard']);
   }
 }
