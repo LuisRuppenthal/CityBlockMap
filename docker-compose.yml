@@ -1,0 +1,40 @@
+services:
+  backend:
+    depends_on:
+      - postgres
+    build:
+      context: ./cityblockmap - backend
+    ports:
+      - "8080:8080"
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cityblockmap
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - cityblockmap-network
+  
+  frontend:
+    build:
+      context: ./cityblockmap - frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - cityblockmap-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    networks:
+      - cityblockmap-network
+
+networks:
+  cityblockmap-network:
+    driver: bridge
