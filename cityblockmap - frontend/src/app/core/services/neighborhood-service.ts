@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Neighborhood } from '../models/neighborhood.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Neighborhood } from '../models/neighborhood.model';
 
 export class NeighborhoodService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://127.0.0.1:8080/neighborhoods';
+  private apiUrl = `${environment.apiUrl}/neighborhoods`;
 
   getAll(): Observable<Neighborhood[]> {
     return this.http.get<Neighborhood[]>(this.apiUrl);

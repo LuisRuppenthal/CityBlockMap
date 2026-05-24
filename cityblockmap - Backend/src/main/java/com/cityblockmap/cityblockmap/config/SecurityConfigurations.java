@@ -29,6 +29,7 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/neighborhoods/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/blocks/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/users/**").hasRole("ADMIN")

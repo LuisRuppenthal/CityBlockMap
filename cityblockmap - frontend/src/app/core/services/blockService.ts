@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Block } from '../models/block.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Block } from '../models/block.model';
 
 export class BlockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://127.0.0.1:8080/blocks';
+  private apiUrl = `${environment.apiUrl}/blocks`;
 
   getAll(): Observable<Block[]> {
   return this.http.get<Block[]>(this.apiUrl)
