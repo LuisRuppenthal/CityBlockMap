@@ -1,7 +1,9 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MapPickerModal } from '../../../modals/map-picker-modal/map-picker-modal';
 
 interface Neighborhood {
   id: number;
@@ -17,6 +19,8 @@ interface Neighborhood {
 export class BlockRegister {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private dialog = inject(Dialog);
+  private cdr = inject(ChangeDetectorRef);
 
   form: {
     number: string;
@@ -53,6 +57,21 @@ export class BlockRegister {
       },
       error: () => {
         this.loadingNeighborhoods = false;
+      }
+    });
+  }
+
+  protected openMapPickerModal(): void {
+    const ref = this.dialog.open(MapPickerModal, {
+      disableClose: true,
+      hasBackdrop: true
+    });
+ 
+    ref.closed.subscribe((result: any) => {
+      if (result) {
+        this.form.latitude = String(result.latitude);
+        this.form.longitude = String(result.longitude);
+        this.cdr.detectChanges();
       }
     });
   }

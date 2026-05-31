@@ -9,12 +9,12 @@
   --blue-500: #2563eb;
   --blue-400: #3b82f6;
   --blue-100: #dbeafe;
-  --blue-50:  #eff6ff;
+  --blue-50: #eff6ff;
   --gray-900: #111827;
   --gray-600: #4b5563;
   --gray-300: #d1d5db;
   --gray-100: #f3f4f6;
-  --white:    #ffffff;
+  --white: #ffffff;
   --shadow-sm: 0 1px 3px rgba(15, 31, 61, 0.08), 0 1px 2px rgba(15, 31, 61, 0.06);
   --shadow-md: 0 4px 16px rgba(15, 31, 61, 0.12), 0 2px 6px rgba(15, 31, 61, 0.08);
   --shadow-lg: 0 12px 32px rgba(15, 31, 61, 0.16), 0 4px 10px rgba(15, 31, 61, 0.10);
@@ -34,7 +34,7 @@ section {
   justify-content: center;
   padding: 48px 24px;
 }
- 
+
 /* --------------------------------------------------
    CARD DE CADASTRO
 -------------------------------------------------- */
@@ -48,14 +48,14 @@ section {
   max-width: 460px;
   animation: fadeUp 0.4s ease both;
 }
- 
+
 /* --------------------------------------------------
    CABEÇALHO DO CARD
 -------------------------------------------------- */
 .card-header {
   margin-bottom: 32px;
 }
- 
+
 h1 {
   font-family: 'Syne', sans-serif;
   font-size: 1.75rem;
@@ -64,7 +64,7 @@ h1 {
   margin: 0 0 6px 0;
   letter-spacing: -0.5px;
 }
- 
+
 h1::after {
   content: '';
   display: block;
@@ -74,13 +74,13 @@ h1::after {
   border-radius: 2px;
   margin-top: 8px;
 }
- 
+
 .card-header p {
   color: var(--gray-600);
   font-size: 0.9rem;
   margin: 14px 0 0 0;
 }
- 
+
 /* --------------------------------------------------
    FORMULÁRIO
 -------------------------------------------------- */
@@ -89,13 +89,37 @@ h1::after {
   flex-direction: column;
   gap: 20px;
 }
- 
-.field {
+
+.field_name {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
- 
+
+.field_latitude {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field_latitude .input-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.field_longitude {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field_neighborhood {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 /* --------------------------------------------------
    LABELS
 -------------------------------------------------- */
@@ -106,7 +130,7 @@ label {
   letter-spacing: 0.07em;
   color: var(--blue-500);
 }
- 
+
 /* --------------------------------------------------
    INPUTS E SELECT
 -------------------------------------------------- */
@@ -124,12 +148,12 @@ select {
   outline: none;
   appearance: none;
 }
- 
+
 input[type="text"]::placeholder,
 input[type="number"]::placeholder {
   color: var(--gray-300);
 }
- 
+
 select {
   cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234b5563' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
@@ -137,7 +161,7 @@ select {
   background-position: right 14px center;
   padding-right: 36px;
 }
- 
+
 /* --------------------------------------------------
    ESTADOS DOS INPUTS
 -------------------------------------------------- */
@@ -147,13 +171,13 @@ select:focus {
   border-color: var(--blue-400);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
- 
+
 .loading-text {
   font-size: 0.85rem;
   color: var(--gray-600);
   margin: 0;
 }
- 
+
 /* --------------------------------------------------
    BOTÕES DE AÇÃO
 -------------------------------------------------- */
@@ -162,7 +186,7 @@ select:focus {
   gap: 12px;
   margin-top: 8px;
 }
- 
+
 .btn-primary,
 .btn-secondary {
   flex: 1;
@@ -175,19 +199,19 @@ select:focus {
   transition: all 0.2s ease;
   border: none;
 }
- 
+
 .btn-primary {
   background: var(--blue-500);
   color: var(--white);
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
 }
- 
+
 .btn-secondary {
   background: var(--white);
   color: var(--gray-600);
   border: 1px solid var(--gray-300);
 }
- 
+
 /* --------------------------------------------------
    ESTADOS DOS BOTÕES
 -------------------------------------------------- */
@@ -196,17 +220,17 @@ select:focus {
   transform: translateY(-1px);
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
 }
- 
+
 .btn-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
- 
+
 .btn-secondary:hover {
   background: var(--gray-100);
   border-color: var(--gray-600);
 }
- 
+
 /* --------------------------------------------------
    ALERTAS
 -------------------------------------------------- */
@@ -217,13 +241,13 @@ select:focus {
   font-weight: 500;
   margin-bottom: 4px;
 }
- 
+
 .alert-error {
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #dc2626;
 }
- 
+
 .alert-success {
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
@@ -240,12 +264,50 @@ select:focus {
   text-transform: none;
   letter-spacing: 0;
 }
- 
+
+/* --------------------------------------------------
+   ICONES
+-------------------------------------------------- */
+
+.map_icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.map_icon:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.input-icon-wrapper {
+  position: relative;
+}
+
+.input-icon-wrapper input {
+  width: 100%;
+  padding-right: 52px;
+}
+
 /* --------------------------------------------------
    ANIMAÇÕES
 -------------------------------------------------- */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
- 
+
+
