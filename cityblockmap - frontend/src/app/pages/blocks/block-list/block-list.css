@@ -83,6 +83,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
+  align-items: stretch;
 }
 
 /* --------------------------------------------------
@@ -90,6 +91,11 @@ ul {
 -------------------------------------------------- */
 li {
   animation: fadeUp 0.3s ease both;
+  height: 100%;
+}
+
+li button {
+  height: 100%;
 }
 
 /* --------------------------------------------------
@@ -97,7 +103,9 @@ li {
 -------------------------------------------------- */
 button {
   width: 100%;
-  padding: 20px 28px;
+  padding: 16px 20px;
+  height: 100%;
+  min-height: 80px;
   background: var(--white);
   border: 1px solid var(--gray-300);
   border-radius: var(--radius);
@@ -111,6 +119,7 @@ button {
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 
@@ -177,10 +186,17 @@ button:active {
 /* --------------------------------------------------
    BOTÕES DE AÇÃO (EDITAR/DELETAR)
 -------------------------------------------------- */
+.block-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
 .block_buttons {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .block_edit_button,

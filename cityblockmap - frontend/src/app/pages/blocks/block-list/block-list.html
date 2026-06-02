@@ -14,7 +14,9 @@
     @for (block of blocks; track block.id) {
     <li>
       <button type="button" (click)="openBlock(block.id)">
-        {{ block.number }} - {{ block.neighborhood.name }}
+        <span class="block-text">
+          {{ block.neighborhood.name }} - {{ block.number }}
+        </span>
         <div class="block_buttons">
           @if (isAdmin()) {
           <div class="block_edit_button" (click)="$event.stopPropagation(); goToBlockEdit(block.id)">

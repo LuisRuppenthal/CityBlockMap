@@ -15,7 +15,9 @@
     @for (neighborhood of neighborhoods; track neighborhood.id) {
     <li>
       <button type="button" (click)="openNeighborhood(neighborhood.id)">
+        <span class="neighborhood-text">
         <!--{{ neighborhood.id }} - --> {{ neighborhood.name }}
+         </span>
         <div class="neighborhood_buttons">
           @if (isAdmin()) {
           <div class="neighborhood_edit_button" (click)="$event.stopPropagation(); goToNeighborhoodEdit(neighborhood.id)">
