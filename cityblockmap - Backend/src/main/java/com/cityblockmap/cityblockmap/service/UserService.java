@@ -5,6 +5,7 @@ import com.cityblockmap.cityblockmap.mapper.UserMapper;
 import com.cityblockmap.cityblockmap.model.User;
 import com.cityblockmap.cityblockmap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +18,12 @@ public class UserService {
     @Autowired
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper){
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //GET
@@ -43,6 +46,7 @@ public class UserService {
     public UserDTO createUser(UserDTO userDTO){
         User user = userMapper.map(userDTO);
         user.setId(null); //Para forçar ID a ser null
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user = userRepository.save(user);
         return userMapper.map(user);
     }
@@ -59,7 +63,7 @@ public class UserService {
                 existingUser.setLogin(userDTO.getLogin());
             }
             if (userDTO.getPassword() != null){
-                existingUser.setPassword(userDTO.getPassword());
+                existingUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             }
             if (userDTO.getRole() != null){
                 existingUser.setRole(userDTO.getRole());
