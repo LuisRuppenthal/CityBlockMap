@@ -93,6 +93,37 @@ h1::after {
   gap: 6px;
 }
 
+.field_name {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field_latitude {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field_latitude .input-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.field_longitude {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field_neighborhood {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
 /* --------------------------------------------------
    LABELS
 -------------------------------------------------- */
@@ -236,6 +267,36 @@ select:focus {
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
   color: #16a34a;
+}
+
+/* --------------------------------------------------
+   ICONES
+-------------------------------------------------- */
+
+.map_icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.map_icon:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.input-icon-wrapper {
+  position: relative;
+}
+
+.input-icon-wrapper input {
+  width: 100%;
+  padding-right: 52px;
 }
 
 /* --------------------------------------------------

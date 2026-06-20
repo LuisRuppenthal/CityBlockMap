@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MapPickerModal } from '../../../modals/map-picker-modal/map-picker-modal';
+import { Dialog } from '@angular/cdk/dialog';
 
 interface Neighborhood {
   id: number;
@@ -20,6 +22,7 @@ export class BlockEdit implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private dialog = inject(Dialog)
 
   blockId!: number;
 
@@ -58,6 +61,21 @@ export class BlockEdit implements OnInit {
       },
       error: () => {
         this.loadingNeighborhoods = false;
+      }
+    });
+  }
+
+  protected openMapPickerModal(): void {
+    const ref = this.dialog.open(MapPickerModal, {
+      disableClose: true,
+      hasBackdrop: true
+    });
+ 
+    ref.closed.subscribe((result: any) => {
+      if (result) {
+        this.form.latitude = (result.latitude);
+        this.form.longitude = (result.longitude);
+        this.cdr.detectChanges();
       }
     });
   }

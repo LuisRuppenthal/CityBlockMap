@@ -58,10 +58,10 @@ public class BlockService {
             if (blockDTO.getNumber() != null){
                 existingBlock.setNumber(blockDTO.getNumber());
             }
-            if (blockDTO.getLatitude() > 0){
+            if (blockDTO.getLatitude() != null){
                 existingBlock.setLatitude(blockDTO.getLatitude());
             }
-            if (blockDTO.getLongitude() > 0){
+            if (blockDTO.getLongitude() != null){
                 existingBlock.setLongitude(blockDTO.getLongitude());
             }
             if (blockDTO.getNeighborhood() != null){

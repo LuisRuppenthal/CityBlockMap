@@ -90,6 +90,12 @@ h1::after {
   gap: 20px;
 }
 
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .field_name {
   display: flex;
   flex-direction: column;
