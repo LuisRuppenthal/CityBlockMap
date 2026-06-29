@@ -7,25 +7,25 @@ Sistema web para mapeamento de quadras e bairros de uma cidade. Desenvolvido par
 ## Screenshots
 
 ### Dashboard (visão do administrador)
-![Dashboard admin](assets/screenshots/dashboard-admin.png)
+![Dashboard admin](assets/Screenshots/dashboard-admin.png)
 
 O menu do administrador tem acesso completo: cadastro de usuários, bairros e quadras, além das configurações.
 
 ### Seleção de localização no mapa
-![Seleção de localização](assets/screenshots/modal_do_mapa.png)
+![Seleção de localização](assets/Screenshots/modal_do_mapa.png)
 
 Ao cadastrar uma quadra, é possível clicar diretamente no mapa para definir a latitude e longitude, em vez de digitar os valores manualmente.
 
 ### Lista de bairros e quadras
 | Visão do administrador | Visão do usuário comum |
 |---|---|
-| ![Bairros admin](assets/screenshots/bairros-admin.png) | ![Bairros usuário](assets/screenshots/bairros-usuario.png) |
-| ![Quadras admin](assets/screenshots/quadras-admin.png) | ![Quadras usuário](assets/screenshots/quadras-usuario.png) |
+| ![Bairros admin](assets/Screenshots/bairros-admin.png) | ![Bairros usuário](assets/Screenshots/bairros-usuario.png) |
+| ![Quadras admin](assets/Screenshots/quadras-admin.png) | ![Quadras usuário](assets/Screenshots/quadras-usuario.png) |
 
 O usuário comum visualiza as mesmas listas, porém sem os botões de editar e excluir — esse controle de acesso é validado tanto no frontend quanto no backend.
 
 ### Detalhe de uma quadra no mapa
-![Detalhe da quadra](assets/screenshots/mapa.png)
+![Detalhe da quadra](assets/Screenshots/mapa.png)
 
 Cada quadra pode ser visualizada individualmente, com sua localização marcada no mapa via Leaflet.
 
