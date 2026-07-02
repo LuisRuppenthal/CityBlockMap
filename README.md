@@ -92,8 +92,11 @@ SPRING_DATASOURCE_PASSWORD=senha do postgres
 ADMIN_DEFAULT_PASSWORD=defina uma senha forte para o usuário admin
 ```
 
-> `POSTGRES_USER` vai criar o usuário do **banco de dados** quando o container é inicializado na primeira vez, enquanto `POSTGRES_PASSWORD` define a senha desse usuário.
-> Enquanto `SPRING_DATASOURCE_USERNAME` e `SPRING_DATASOURCE_PASSWORD` são respectivamente o usuário e senha para o backend se conectar nesse mesmo banco.
+> `POSTGRES_USER` e `POSTGRES_PASSWORD` criam o usuário e senha do **banco de dados** na primeira vez que o container sobe.
+
+> `DB_USERNAME` e `DB_PASSWORD` são as credenciais que o **backend Spring Boot** usa para se conectar ao banco. Devem ter os mesmos valores de `POSTGRES_USER` e `POSTGRES_PASSWORD`.
+
+> `SPRING_DATASOURCE_URL` define a URL de conexão usada dentro do Docker. O nome `postgres` no meio da URL é o nome do serviço do banco de dados no `docker-compose.yml` — o Docker resolve automaticamente para o IP correto do container.
 
 > `ADMIN_DEFAULT_PASSWORD` define a senha do usuário **admin** padrão da aplicação (não do banco de dados). A cada inicialização, o backend verifica se o admin existe e se sua senha ainda é a padrão original — se for, ele a substitui pelo valor definido aqui. Isso evita ter qualquer senha fixa no código-fonte.
 
@@ -136,7 +139,7 @@ spring.flyway.locations=classpath:db/migration
 
 > A `spring.datasource.url` deste arquivo usa `localhost` propositalmente como valor padrão, permitindo execução fora do Docker. Quando rodado via `docker-compose`, a variável `SPRING_DATASOURCE_URL` definida no `.env` **sobrescreve automaticamente** esse valor (variáveis de ambiente do sistema têm prioridade sobre o `.properties` no Spring Boot), apontando corretamente para o serviço `postgres` da rede Docker.
 
-> `spring.datasource.username` e `spring.datasource.password` são o usuário e senha usados para conectar no banco de dados que foi definido no `.env`. Caso a variável de ambiente não exista, ele vai utilizar como usuário e senha a palavra `postgres`.
+>`DB_USERNAME` ou `DB_PASSWORD` são o usuário e senha usados para conectar no banco de dados que foi definido no `.env`. Caso a variável de ambiente não exista, ele vai utilizar como usuário e senha a palavra `postgres`.
 
 ---
 
@@ -189,12 +192,12 @@ O perfil de desenvolvimento usa banco H2.
 | Variável | Onde é usada | Descrição |
 |---|---|---|
 | `JWT_SECRET` | `.env` e `application-prod.properties` | Chave secreta para assinar os tokens JWT |
-| `POSTGRES_USER` | `.env` | Usuário do PostgreSQL |
-| `POSTGRES_PASSWORD` | `.env` | Senha do PostgreSQL |
+| `POSTGRES_USER` | `.env` | Usuário criado no banco de dados PostgreSQL |
+| `POSTGRES_PASSWORD` | `.env` | Senha do usuário do PostgreSQL |
 | `POSTGRES_DB` | `.env` | Nome do banco de dados |
-| `SPRING_DATASOURCE_URL` | `.env` | URL de conexão usada dentro do container Docker |
-| `SPRING_DATASOURCE_USERNAME` | `.env` | Usuário usado pelo backend dentro do Docker |
-| `SPRING_DATASOURCE_PASSWORD` | `.env` | Senha usada pelo backend dentro do Docker |
+| `SPRING_DATASOURCE_URL` | `.env` | URL de conexão usada pelo backend dentro do Docker |
+| `DB_USERNAME` | `.env` | Usuário que o backend usa para conectar ao banco (mesmo valor de `POSTGRES_USER`) |
+| `DB_PASSWORD` | `.env` | Senha que o backend usa para conectar ao banco (mesmo valor de `POSTGRES_PASSWORD`) |
 | `ADMIN_DEFAULT_PASSWORD` | `.env` | Senha do usuário admin padrão da aplicação |
 
 ---
